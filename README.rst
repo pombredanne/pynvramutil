@@ -9,7 +9,7 @@ pynvramutil
         :target: https://pypi.python.org/pypi/pynvramutil
 
 
-pynvramutil is a utility for nvram chts
+pynvramutil is a utility for nvram change management
 
 * Free software: ISC license
 * Documentation: https://pynvramutil.readthedocs.org.
