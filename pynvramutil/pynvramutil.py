@@ -97,7 +97,8 @@ def main(argv=None):
     import logging
     import optparse
 
-    prs = optparse.OptionParser(usage="%prog : args")
+    prs = optparse.OptionParser(
+        usage="%prog : args")
 
     prs.add_option('-v', '--verbose',
                    dest='verbose',
@@ -109,7 +110,7 @@ def main(argv=None):
                    dest='run_tests',
                    action='store_true',)
 
-    argv = list(argv) if argv is not None else sys.argv[1:]
+    argv = list(argv) if argv is not None else []
     (opts, args) = prs.parse_args(args=argv)
     loglevel = logging.INFO
     if opts.verbose:
@@ -129,7 +130,7 @@ def main(argv=None):
         return unittest.main()
 
     EX_OK = 0
-    output = nvramshowdiff()
+    output = nvramshowdiff(*args[:1])
     return EX_OK
 
 
