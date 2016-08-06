@@ -61,6 +61,50 @@ class NvramDump(object):
         return self.to_json()
 
 
+class OrderedDefaultDict(collections.OrderedDict):
+    def __init__(self, default_factory=None, *a, **kw):
+        collections.OrderedDict.__init__(self, *a, **kw)
+        self.default_factory = default_factory
+
+    def __missing__(self, key):
+        self[key] = value = self.default_factory()
+        return value
+
+
+def compare_nvramdump(*args):
+    """
+
+    Arguments:
+        args (tuple): two or more dumps to layer and compare
+
+    Returns:
+        OrderedDefaultDict: comparison dict
+
+
+    {
+        "dumps": [nd1, nd2],
+        "data": {
+            "key1": {
+                "values": {
+                    "dump1"
+                }
+        }
+    }
+    """
+
+    data = OrderedDefaultDict(default_factory=OrderedDefaultDict)
+    data['dumps'] = list(args)
+    for dump in data['dumps']:
+        for key in dump:
+            attrs = data['data'][key].setdefault('dumpswiththisattr', [])
+            attrs.append(dump)
+            values = data[key].setdefault('sdfsdf', [])
+            values
+
+    # sorted_keys_odict = collections.OrderedDict.fromkeys(
+    #     sorted(itertools.chain(d1.keys(), d2.keys())))
+
+
 def nvramshowdiff(show1, show2):
     """mainfunc
 
