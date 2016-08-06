@@ -22,7 +22,7 @@ class NvramDump(object):
     def read_nvram_tuples(fileobj):
         """
         Args:
-            fileobj (file-like object (str iterable)): obj to read str lines from
+            fileobj (__iter__)): obj to read str lines from
         Returns:
             tuple: (key, value)
         """
